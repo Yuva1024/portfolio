@@ -1,3 +1,16 @@
+/* Ensure modal image fits the modal tile */
+.media-modal-media {
+  display: flex;
+  align-items: center;
+  min-height: 40vh;
+}
+.media-modal-media img {
+  display: block;
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: var(--radius);
+}
 .theme-light #mobile-menu,
 .theme-light .mobile-menu {
   background: #fff !important;
@@ -44,7 +57,8 @@
   pointer-events: none;
   border-radius: var(--radius);
 }
-.media-thumb.video-thumb {
+.media-thumb.video-thumb,
+.media-thumb img {
   border: 2px solid var(--accent);
   position: relative;
 }
@@ -57,6 +71,7 @@
   color: var(--accent);
   pointer-events: none;
 }
+/* Overlay for all media items (default: image) */
 .media-overlay {
   position: absolute;
   left: 0; right: 0; bottom: 0; top: 0;
@@ -67,6 +82,10 @@
   justify-content: center;
   transition: opacity 0.2s;
   pointer-events: none;
+}
+/* Remove overlay background for video tiles only */
+.media-item[data-type="video"] .media-overlay {
+  background: transparent;
 }
 .media-item:hover .media-overlay {
   opacity: 1;

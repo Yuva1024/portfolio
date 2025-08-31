@@ -17,6 +17,11 @@ document.addEventListener('DOMContentLoaded', function () {
         if (type === 'image') {
             const img = item.querySelector('img');
             content = `<img src="${img.src}" alt="${img.alt}">`;
+            // Hide title and description for images
+            modalTitle.textContent = '';
+            modalDesc.textContent = '';
+            modalTitle.style.display = 'none';
+            modalDesc.style.display = 'none';
         } else if (type === 'video') {
             // Check for Google Drive iframe
             const iframe = item.querySelector('iframe');
@@ -27,10 +32,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 const src = video.querySelector('source').src;
                 content = `<video controls autoplay style="background:#000;"><source src="${src}" type="video/mp4"></video>`;
             }
+            // Show title and description for videos
+            modalTitle.textContent = title;
+            modalDesc.textContent = desc;
+            modalTitle.style.display = '';
+            modalDesc.style.display = '';
         }
         modalMedia.innerHTML = content;
-        modalTitle.textContent = title;
-        modalDesc.textContent = desc;
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
     });
